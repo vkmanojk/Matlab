@@ -1,0 +1,14 @@
+i1=imread('pout.tif');
+i1 = double(i1);
+f1=fft2(i1);
+mag1 = abs(f1);
+s1 = mat2gray(abs(fftshift(f1)));
+figure,imshow(s1);
+s = log(1+abs(fftshift(f1)));
+phase1 = angle(f1);
+figure,imshow(phase1);
+r1=ifftshift(ifftn(mag1));
+r2=ifft2(exp(1i*phase1));
+figure,imshow(s);
+figure,imshow((uint8(r1)));
+figure,imshow(r2);
