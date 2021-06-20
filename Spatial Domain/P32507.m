@@ -1,0 +1,16 @@
+h=fspecial('sobel');
+cat = imread('cameraman.tif');
+r1 = imfilter(cat,h,'replicate');
+h=fspecial('unsharp');
+r = imfilter(cat,h);
+r2 = imfilter(cat,h,'replicate');
+h=fspecial('prewitt');
+r3 = imfilter(cat,h,'replicate');
+a = cat-r;
+a = a + cat;
+subplot(3,2,1),imshow(cat),title('Original');
+subplot(3,2,2),imshow(r),title('Zero Padding');
+subplot(3,2,3),imshow(r1),title('Sobel');
+subplot(3,2,4),imshow(r2),title('Unsharp');
+subplot(3,2,5),imshow(r3),title('Prewitt');
+subplot(3,2,6),imshow(a);
